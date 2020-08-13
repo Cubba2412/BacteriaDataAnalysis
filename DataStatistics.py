@@ -19,25 +19,33 @@ import numpy as np
 def dataStatistics(data, statistic):
     
     statistic=statistic.lower()
+    statType =""
+
     
     if statistic == "mean temperature":
         result = np.mean(data[:,0])                             #Takes the mean value of coloumn 0
+        statType="Mean Temperature: "
         
         
     elif statistic == "mean growth rate":
         result = np.mean(data[:,1])                             #Takes The mean value of coloumn 1
+        statType="Mean Growth rate: "
         
         
     elif statistic == "std temperature":
         result = np.std(data[:,0])                              #Finds the standard deviation of coloumn 0
+        statType="Std Temperature: "
         
         
     elif statistic == "std growth rate":
-        result = np.std(data[:,1])                              #Finds the standard deviation of coloumn 1 
+        result = np.std(data[:,1])                              #Finds the standard deviation of coloumn 1
+        statType="Std Growth rate: "
         
         
     elif statistic == "rows":
         result = len(data)                                      #Finds how many rows are in the matrix
+        statType="Number of Rows: "
+
         
         
     elif statistic == "mean cold growth rate":
@@ -51,6 +59,7 @@ def dataStatistics(data, statistic):
             except IndexError:
                 break
         result = np.mean(data[:,1])     #Takes the mean value of coloumn 1 where the temperature is less than 20
+        statType="Mean Cold Growth rate: "
         
         
     elif statistic == "mean hot growth rate":
@@ -64,13 +73,13 @@ def dataStatistics(data, statistic):
             except IndexError:
                 break
             result = np.mean(data[:,1])     #Takes the mean value of coloumn 1 where the temperature is more than 50
+            statType="Mean Hot Growth rate: "
             
         
     else:
         result = "Error"
     
-    
-    return result
+    return statType, result
 
 
 

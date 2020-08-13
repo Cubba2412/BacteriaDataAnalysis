@@ -6,15 +6,19 @@ Created on Thu Aug 13 09:16:34 2020
 """
 from DataStatistics import dataStatistics, printStatOptions
 from dataLoad import dataLoad
+from PrintAndUserInput import *
+from DataPlotFunktion import *
+from Filter import *
 
 def mainMenu():
     
-    welcomeMessage()
-    
+    print("Welcome to the python Bacteria Data Analysis program")
+    dataLoaded = False
+    dataNotLoaded = "Data has not been loaded. Please load data to perform calculations"
     while True:
         try:
             printMenu()
-            choice = inputChoiceNum("Please choose an option: ")
+            choice = inputChoiceMenuNum("Please choose an option: ")
             
             
             if(choice == 1):
@@ -24,17 +28,30 @@ def mainMenu():
                 dataTmp = data # Keep original data by only performing calculations a seperate variable
             elif(choice == 2):
                 if not(dataLoaded):
-                   dataNotLoaded()
+                    print(dataNotLoaded)
                 else:
-                    x = 1   
+                    while True:
+                       try:        
+                           Bacteria = inputChoiceBac("Please enter a Bacteria Type: ")
+                           l_lim = inputChoiceLim("Please enter a lower limit for the growth rate")
+                           u_lim = inputChoiceLim("Please enter a upper limit for the growth rate")
+                           newDat = dataFilter(dataTmp,bacteria,l_lim,u_lim)
+                           if(newDat == data):
+                               raise ValueError()
+                           else:     
+                               print(newDat)
+                               break
+                       except ValueError:
+                           print("Error when filtering the data")
+                           pass   
             elif(choice == 3):
                if not(dataLoaded):
-                   dataNotLoaded()
+                    print(dataNotLoaded)
                else:
                    while True:
                        try:        
                            statisticChoice = inputChoiceStr("Please enter a statistic to calculate: ")
-                           statistic = dataStatistics(dataTmp,statisticChoice)
+                           statType,statistic = dataStatistics(dataTmp,statisticChoice)
                            if(statistic == "Error"):
                               raise ValueError()
                            else:
@@ -45,67 +62,16 @@ def mainMenu():
                            printStatOptions()
                            pass
                        
-                   print(statistic, "\n")
+                   print(statType,statistic, "\n")
             elif(choice == 4):
                 if not(dataLoaded):
-                   dataNotLoaded()
+                    print(dataNotLoaded)
                 else:
-                     x = 1
-               # dataPlot()
+                     dataPlot(data)
             elif(choice == 5):
                 print("Goodbye")
                 break
         except:
             pass
-    return choice
-
-def welcomeMessage():
-    print("Welcome to the python Bacteria Data Analysis program")
-    return
+    return 
     
-def dataNotLoaded():
-    print("Data has not been loaded. Please load data to perform calculations")
-    return
-
-
-def printMenu():
-    
-    
-    print("\n1. Indlæs data.")
-    print("2. Filtrer data.")
-    print("3. Vis statistik.")
-    print("4. Generer diagrammer.")
-    print("5. Afslut.")
-    
-    return
-
-def inputChoiceNum(prompt):
-    # INPUTNUMBER Prompts user to input a number
-    
-    while True:
-        try:
-            num = int(input(prompt))
-            if not(0 < num < 6):
-                pass
-                print("Please enter a number between 1 and 5")
-            else:
-                break
-        except ValueError:
-            pass
-            print("Please enter a number between 1 and 5")
-    return num
-
-def inputChoiceStr(prompt):
-    # INPUTNUMBER Prompts user to input a number
-    
-    while True:
-        try:
-            string = input(prompt)
-            if string.isdigit():
-                pass
-                print("Please enter a valid string")
-            else:
-                break
-        except ValueError:
-            pass
-    return string

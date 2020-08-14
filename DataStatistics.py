@@ -101,20 +101,3 @@ def printStatOptions():
 
 
 
-print(dataStatistics(np.array([[11, 2,  3],
-                               [20, 5,  6],
-                               [50, 8,  9],
-                               [35, 11,12],
-                               [11, 12, 3],
-                               [20, 7,  6],
-                               [50, 18, 9],
-                               [35, 11,12]]), "Mean hot growth rate"))
-
-
-
-
-
-
-
-
-

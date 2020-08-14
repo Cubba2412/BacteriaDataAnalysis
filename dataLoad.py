@@ -30,17 +30,13 @@ def dataLoad(filename):
     for i in range(0,count):
             if not(10 <= float(lines[i].split()[0]) <= 60):
                 print("WARNING: The observation in row {:d} was removed as it was below 10 or above 60 degrees".format(i))
-                pass
+                continue
             if not(float(lines[i].split()[1]) > 0):
                 print("WARNING: The observation in row {:d} was removed as the growth rate was negative".format(i))
-                pass
+                continue
             if not(1 <= int(lines[i].split()[2]) <= 4):
                 print("WARNING: The observation in row {:d} was removed as it did not match the bacteria type code".format(i))
-                pass
+                continue
             else:
                 data = np.vstack((data,lines[i].split())) 
     return data.astype(np.float)
-
-
-Data = dataLoad('test.txt')
-

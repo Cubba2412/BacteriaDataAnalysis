@@ -14,64 +14,88 @@ def mainMenu():
     
     print("Welcome to the python Bacteria Data Analysis program")
     dataLoaded = False
+    dataFiltered = False
     dataNotLoaded = "Data has not been loaded. Please load data to perform calculations"
+    bacteriaTypes = {1:'Salmonella enterica', 2: 'Bacillus cereus', 3: 'Listeria', 4: 'Brochothrix thermosphacta'}
     while True:
         try:
             printMenu()
-            choice = inputChoiceMenuNum("Please choose an option: ")
-            
-            
+            if(dataFiltered):
+                print("\n\nFiltered data available")
+                print("Current data filter parameters: ")
+                print("Bacteria Type:",bacteriaTypes[bacteria])
+                print("Lower and Upper limit [{:.2f}, {:.2f}]".format(l_lim,u_lim))
+                
+            choice = inputChoiceNum("Please choose an option: ", "Menu")            
             if(choice == 1):
                 filename = inputChoiceStr("Please enter the name of the datafile to load: ")
                 data = dataLoad(filename)
                 dataLoaded = True
-                dataTmp = data # Keep original data by only performing calculations a seperate variable
+                print(data)
+                
             elif(choice == 2):
                 if not(dataLoaded):
                     print(dataNotLoaded)
                 else:
                     while True:
-                       try:        
-                           Bacteria = inputChoiceBac("Please enter a Bacteria Type: ")
-                           l_lim = inputChoiceLim("Please enter a lower limit for the growth rate")
-                           u_lim = inputChoiceLim("Please enter a upper limit for the growth rate")
-                           newDat = dataFilter(dataTmp,bacteria,l_lim,u_lim)
-                           if(newDat == data):
-                               raise ValueError()
-                           else:     
-                               print(newDat)
-                               break
+                       try:
+                           bacteria, l_lim, u_lim, dataFiltered = filterChoice(dataFiltered) 
+                           newDat = dataFilter(data,bacteria,l_lim,u_lim)
+                           break
                        except ValueError:
                            print("Error when filtering the data")
-                           pass   
+                           pass  
+                       
             elif(choice == 3):
                if not(dataLoaded):
                     print(dataNotLoaded)
                else:
                    while True:
                        try:        
+                           print("\nCalculation options: ")
+                           printStatOptions()
+                           dataChoice = inputChoiceNum("Would you like to calculate statistics of the original data (1) or the filtered data (2): ", "Filtered data")
                            statisticChoice = inputChoiceStr("Please enter a statistic to calculate: ")
-                           statType,statistic = dataStatistics(dataTmp,statisticChoice)
+                           if(dataChoice == 2):
+                               statType,statistic = dataStatistics(newDat,statisticChoice)
+                               break
+                           else:
+                               statType,statistic = dataStatistics(data,statisticChoice)
+                               break
                            if(statistic == "Error"):
                               raise ValueError()
                            else:
                                break
-                  
                        except ValueError:
                            print("\nStatistic not found \nPlease enter one of the following valid statistics: \n")
-                           printStatOptions()
+                           
                            pass
-                       
                    print(statType,statistic, "\n")
             elif(choice == 4):
                 if not(dataLoaded):
                     print(dataNotLoaded)
+                elif(dataFiltered):
+                    while True:
+                       try:        
+                           dataChoice = inputChoiceNum("Would you like to plot the original data (1) or the filtered data (2): ", "Filtered data")
+                           if(dataChoice == 2):
+                               dataPlot(newDat)
+                               break
+                           else:
+                               dataPlot(data)
+                               break
+                       except ValueError:
+                           print("Error when creating plots")
+                           pass
                 else:
-                     dataPlot(data)
+                    dataPlot(data)
+                    
             elif(choice == 5):
                 print("Goodbye")
                 break
         except:
             pass
     return 
+
+mainMenu()
     

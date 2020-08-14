@@ -60,13 +60,13 @@ def dataPlot(data):
         plt.plot(x1, y1, "ro")              #Plot scatter plot of data
     if (len(x2 != 0)):                                       
         plt.plot(x2[sort2], y2[sort2], "b", label='Bacillus cereus')
-        plt.plot(x2, y2, "bo") 
+        plt.plot(x2, y2, "bx") 
     if (len(x3 != 0)): 
         plt.plot(x3[sort3], y3[sort3], "y", label='Listeria')
-        plt.plot(x3, y3, "yo") 
+        plt.plot(x3, y3, "y^") 
     if (len(x4 != 0)): 
         plt.plot(x4[sort4], y4[sort4], "g", label='Brochothrix thermosphacta')
-        plt.plot(x4, y4, "go")
+        plt.plot(x4, y4, "gs")
     plt.title("Growth rate by temperature") #Set the title of the graph
     plt.xlabel("Temperature")               #Set the x-axis label
     plt.ylabel("Growth rate")               #Set the y-axis label

@@ -26,7 +26,7 @@ def dataFilter(data, bacteria, l_lim, u_lim):
     return data
 
 
-def filterChoice(dataFiltered):
+def filterChoice(bacteria, l_lim, u_lim, dataFiltered):
     # FILTERCHOICE Prompts the user for a choice of filter, 
     # returns the choices as well as a flag indicating the data is to be filtered 
     ##
@@ -47,6 +47,8 @@ def filterChoice(dataFiltered):
                     bacteria = 0
                     dataClear = True
                     dataFiltered = False
+                else:
+                    break
             else:
                 choice = inputChoiceNum("Would you like to filter for bacteria? (Y:1, N:0) ", "Y/N")
                 if (choice):

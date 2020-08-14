@@ -19,11 +19,14 @@ def mainMenu():
     print("Welcome to the python Bacteria Data Analysis program")
     dataLoaded = False
     dataFiltered = False
+    bacteria = 0
+    l_lim = 0
+    u_lim = 0
     dataChoice = 1
     dataNotLoaded = "Data has not been loaded. Please load data to perform calculations"
-    bacteriaTypes = {1:'Salmonella enterica', 2: 'Bacillus cereus', 3: 'Listeria', 4: 'Brochothrix thermosphacta'}
+    bacteriaTypes = {0:'All Bacteria', 1:'Salmonella enterica', 2: 'Bacillus cereus', 3: 'Listeria', 4: 'Brochothrix thermosphacta'}
     while True:
-        try:
+   
             printMenu()
             #If the data has been filtered, inform the user
             if(dataFiltered):
@@ -48,7 +51,6 @@ def mainMenu():
                             print("\nFile not found. Please enter valid filename")
                     except:
                         print("\nError while loading datafile")
-                           
             elif(choice == 2):
                 #If data has not been loaded, inform the user load data
                 if not(dataLoaded):
@@ -57,7 +59,7 @@ def mainMenu():
                     while True:
                        try:
                            #Prompt the user for the type of filter they want
-                           bacteria, l_lim, u_lim, dataFiltered = filterChoice(dataFiltered) 
+                           bacteria, l_lim, u_lim, dataFiltered = filterChoice(bacteria, l_lim, u_lim, dataFiltered) 
                            newDat = dataFilter(data,bacteria,l_lim,u_lim)
                            break
                        except ValueError:
@@ -117,13 +119,12 @@ def mainMenu():
                            pass
                 else:
                     dataPlot(data)
-                    
+                print("\nGenerating plots...")
             #Exit the program, by breaking the loop
             elif(choice == 5):
                 print("Goodbye")
                 break
-        except:
-            pass
+       
     return 
 
 #Run the main script

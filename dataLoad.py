@@ -1,23 +1,16 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Aug 12 10:51:48 2020
-
-@author: ThomasBirk
-"""
-
 import numpy as np
 
 def dataLoad(filename):
     # DATALOAD Loads in a text data containing N x 3 data values and
     # returns it as a float array
     ##
-    #Usage: data = dataLoad(filename)
+    # Usage: data = dataLoad(filename)
     ##
-    #Input filename: filename of textfile (String of full path to file)
+    # Input filename: filename of textfile (String of full path to file)
     # Output data: N x 3 float array with the data contained 
     # in the text file given
     ##
-    #Author: Thomas B. Frederiksen s183729@student.dtu.dk, 2020
+    # Author: Thomas B. Frederiksen s183729@student.dtu.dk, 2020
     
     filein = open(filename, "r") # Opens the file for reading
     lines = filein.readlines() # Reads all lines into an array

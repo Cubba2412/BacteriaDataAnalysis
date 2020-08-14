@@ -1,7 +1,4 @@
-
-
 import numpy as np
-
 
 
 #This function calculates the statistic given a keyword
@@ -11,7 +8,7 @@ import numpy as np
 # Input Data(Nx3 Matrix of the data) Statistic(Array of strings)
 # Output result(float)
 #
-# Author: Henrik Riise Nieslen  S183693
+# Author: Henrik Riise Nieslen  S183693@student.dtu.dk 2020
 
 
 #The matrix is divided into: Temperature, Growth rate, Bacteria
@@ -90,7 +87,7 @@ def dataStatistics(data, statistic):
 # Input nan
 # Output nan
 #
-# Author: Henrik Riise Nieslen  S183693
+# Author: Henrik Riise Nieslen  S183693@student.dtu.dk 2020
 def printStatOptions():
     
     options = (np.array(["Mean Temperature", "Mean Growth rate", "Std Temperature",

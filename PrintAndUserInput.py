@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 13 11:06:55 2020
-
-@author: ThomasBirk
-"""
-
+  # PRINTMENU, PRINTBACTERIATYPE Prints the menu options and bacteriatypes
+  #                              in the console 
+  ##
+  # Usage: printMenu(), printBacteriaType()
+  ##
+  # Author: Thomas B. Frederiksen, s183729@student.dtu.dk, 2020
 def printMenu():
     
     print("\n1. Load data.")
@@ -23,8 +22,22 @@ def printBacteriaType():
     print("4 Brochothrix thermosphacta")
     return
 
+
+    # INPUTCHOICENUM, INPUTCHOICESTR Prompts the user for a number anf a 
+    #                                string respectively, and returns the 
+    #                                number or string respectively
+    ##
+    # Usage: choice =  choice = inputChoiceNum(prompt, inputType)
+    ##
+    # Input (inputChoiceNum): prompt (Input prompt string being printed to the console), 
+    #        inputType (String defining the type of input)
+    # Input (inputChoiceStr): prompt (Input prompt string being printed to the console)
+    # Output: the number or string input from the user respectively
+    ##
+    # Author: Thomas B. Frederiksen, s183729@student.dtu.dk, 2020
+    
 def inputChoiceNum(prompt, inputType):
-    # INPUTNUMBER Prompts user to input a number
+    # Continously prompt the user for a number untill a valid option has been given
     
     while True:
         try:
@@ -55,8 +68,7 @@ def inputChoiceNum(prompt, inputType):
     return num
 
 def inputChoiceStr(prompt):
-    # INPUTNUMBER Prompts user to input a number
-    
+    # Continously prompt the user for a valid string 
     while True:
         try:
             string = input(prompt)
@@ -68,3 +80,6 @@ def inputChoiceStr(prompt):
         except ValueError:
             pass
     return string
+
+
+

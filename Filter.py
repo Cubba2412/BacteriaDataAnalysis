@@ -1,18 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 13 09:29:00 2020
-
-@author: cgrin
-
-Filter
-"""
-
-import numpy as np
-
 from PrintAndUserInput import inputChoiceNum, printBacteriaType
 
 def dataFilter(data, bacteria, l_lim, u_lim):
-    # FILTER Filters the given data for chosen conditions, 
+    # DATAFILTER Filters the given data for chosen conditions, 
     # returns an updated set of data, wherein all data 
     # complies with the given conditions.
     #
@@ -38,6 +27,16 @@ def dataFilter(data, bacteria, l_lim, u_lim):
 
 
 def filterChoice(dataFiltered):
+    # FILTERCHOICE Prompts the user for a choice of filter, 
+    # returns the choices as well as a flag indicating the data is to be filtered 
+    ##
+    # Usage: bacteria, l_lim, u_lim, dataFiltered = filterChoice(dataFiltered)
+    ##
+    # Input: bacteria (integer), l_lim (integer), u_lim (integer)
+    #        dataFiltered (Boolean)
+    # Output: same as input
+    ##
+    # Author: Thomas B. Frederiksen, s183729@student.dtu.dk, 2020
     while True:
         try:
             if(dataFiltered):

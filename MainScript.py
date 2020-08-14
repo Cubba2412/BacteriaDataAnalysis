@@ -9,6 +9,7 @@ from dataLoad import dataLoad
 from PrintAndUserInput import *
 from DataPlotFunktion import *
 from Filter import *
+import os.path
 
 def mainMenu():
     
@@ -28,11 +29,18 @@ def mainMenu():
                 
             choice = inputChoiceNum("Please choose an option: ", "Menu")            
             if(choice == 1):
-                filename = inputChoiceStr("Please enter the name of the datafile to load: ")
-                data = dataLoad(filename)
-                dataLoaded = True
-                print(data)
-                
+                while True:
+                    try:                        
+                        filename = inputChoiceStr("Please enter the name of the datafile to load: ")
+                        if(os.path.isfile(filename)):
+                            data = dataLoad(filename)
+                            dataLoaded = True
+                            break
+                        else:
+                            print("\nFile not found. Please enter valid filename")
+                    except:
+                        print("\nError while loading datafile")
+                           
             elif(choice == 2):
                 if not(dataLoaded):
                     print(dataNotLoaded)
@@ -54,7 +62,8 @@ def mainMenu():
                        try:        
                            print("\nCalculation options: ")
                            printStatOptions()
-                           dataChoice = inputChoiceNum("Would you like to calculate statistics of the original data (1) or the filtered data (2): ", "Filtered data")
+                           if(dataFiltered):
+                               dataChoice = inputChoiceNum("Would you like to calculate statistics of the original data (1) or the filtered data (2): ", "Filtered data")
                            statisticChoice = inputChoiceStr("Please enter a statistic to calculate: ")
                            if(dataChoice == 2):
                                statType,statistic = dataStatistics(newDat,statisticChoice)

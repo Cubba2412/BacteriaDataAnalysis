@@ -67,7 +67,7 @@ def filterChoice(dataFiltered):
                     if(choice == 1):
                         pass
                     else:
-                        print("\nReverting to main menu")
+                        print("\nReverting to main menu...")
                         if(dataClear):
                             l_lim = 0
                             u_lim = 1

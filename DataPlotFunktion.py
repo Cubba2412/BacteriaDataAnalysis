@@ -37,25 +37,35 @@ def dataPlot(data):
     
     
     #Bar chart
-    x = ['Salmonella enterica', 'Bacillus cereus', 'Listeria', 'Brochothrix thermosphacta']                #Each category of bacteria
-    y = np.array([len(x1), len(x2), len(x3), len(x4)]) #Amount of each bacteria
-    plt.bar(x, y, color="b")                #Plot bar chart
+    x = ['Salmonella enterica', 'Bacillus cereus', 'Listeria', 'Brochothrix thermosphacta'] #Each category of bacteria
+    if (len(x1) != 0):                      #Check if data exist, if it doesn't dont plot
+        plt.bar(x[0], len(x1), color="b")
+    if (len(x2) != 0):
+        plt.bar(x[1], len(x2), color="b")
+    if (len(x3) != 0):
+        plt.bar(x[2], len(x3), color="b")
+    if (len(x4) != 0):
+        plt.bar(x[3], len(x4), color="b")
     plt.title("Number of bacteria")         #Set the title of the graph
     #plt.xlabel("Data")                     #Set the x-axis label
-    plt.xticks(rotation=15)                 #Rotate labels to avoid overlap
     plt.ylabel("Amount of bacteria")        #Set the y-axis label
+    plt.xticks(rotation=15)                 #Rotate labels to avoid overlap
     plt.show()
-    
+
     
     #Growth rate chart
-    plt.plot(x1[sort1], y1[sort1], "r", label='Salmonella enterica') #Plot line graph of data
-    plt.plot(x1, y1, "ro")                                           #Plot scatter plot of data
-    plt.plot(x2[sort2], y2[sort2], "b", label='Bacillus cereus')
-    plt.plot(x2, y2, "bo") 
-    plt.plot(x3[sort3], y3[sort3], "y", label='Listeria')
-    plt.plot(x3, y3, "yo") 
-    plt.plot(x4[sort4], y4[sort4], "g", label='Brochothrix thermosphacta')
-    plt.plot(x4, y4, "go")
+    if (len(x1) != 0):                      #Check if data exist, if it doesn't dont plot
+        plt.plot(x1[sort1], y1[sort1], "r", label='Salmonella enterica') #Plot line graph of data
+        plt.plot(x1, y1, "ro")              #Plot scatter plot of data
+    if (len(x2 != 0)):                                       
+        plt.plot(x2[sort2], y2[sort2], "b", label='Bacillus cereus')
+        plt.plot(x2, y2, "bo") 
+    if (len(x3 != 0)): 
+        plt.plot(x3[sort3], y3[sort3], "y", label='Listeria')
+        plt.plot(x3, y3, "yo") 
+    if (len(x4 != 0)): 
+        plt.plot(x4[sort4], y4[sort4], "g", label='Brochothrix thermosphacta')
+        plt.plot(x4, y4, "go")
     plt.title("Growth rate by temperature") #Set the title of the graph
     plt.xlabel("Temperature")               #Set the x-axis label
     plt.ylabel("Growth rate")               #Set the y-axis label
@@ -66,6 +76,5 @@ def dataPlot(data):
     plt.show()    
     
     return
-
 
 

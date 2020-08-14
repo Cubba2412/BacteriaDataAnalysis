@@ -1,3 +1,4 @@
+
 import numpy as np
 import matplotlib.pyplot as plt 
 
@@ -38,18 +39,19 @@ def dataPlot(data):
     #Bar chart
     x = ['Salmonella enterica', 'Bacillus cereus', 'Listeria', 'Brochothrix thermosphacta'] #Each category of bacteria
     if (len(x1) != 0):                      #Check if data exist, if it doesn't dont plot
-        plt.bar(x[0], len(x1), color="b")
+        plt.bar(x[0], len(x1), color="r")   #Plot bar graph of data
     if (len(x2) != 0):
         plt.bar(x[1], len(x2), color="b")
     if (len(x3) != 0):
-        plt.bar(x[2], len(x3), color="b")
+        plt.bar(x[2], len(x3), color="y")
     if (len(x4) != 0):
-        plt.bar(x[3], len(x4), color="b")
+        plt.bar(x[3], len(x4), color="g")
     plt.title("Number of bacteria")         #Set the title of the graph
     #plt.xlabel("Data")                     #Set the x-axis label
     plt.ylabel("Amount of bacteria")        #Set the y-axis label
     plt.xticks(rotation=15)                 #Rotate labels to avoid overlap
-    plt.show()
+    plt.xlim([-0.5, 3.5])                   #Set the limits of the x-axis
+    plt.show()                              #Show the plots
 
     
     #Growth rate chart
@@ -72,8 +74,10 @@ def dataPlot(data):
     plt.ylim([0, 1])                        #Set the limits of the y-axis
     plt.grid(color='black', linestyle='--', linewidth=0.2) #Plot grid
     plt.legend(loc="best")                  #Place legend where minimum overlap with data occurs
-    plt.show()    
+    plt.show()                              #Show the plots
     
     return
+
+
 
 
